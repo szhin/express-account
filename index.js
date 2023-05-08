@@ -15,7 +15,7 @@ dotenv.config();
 
 const db = require('./src/config/db');
 const route = require('./src/routes');
-const auth = require('./auth');
+const auth = require('./src/auth/auth');
 const User = require('./src/app/models/User');
 
 const app = express();
