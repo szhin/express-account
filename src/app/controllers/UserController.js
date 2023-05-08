@@ -109,7 +109,8 @@ class UserController {
     }
     // [GET] home page
     index(req, res, next) {
-        res.send('Hello World!');
+        // res.send('Hello World!');
+        res.render('home');
     }
 }
 module.exports = new UserController();

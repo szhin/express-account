@@ -1,0 +1,182 @@
+@import 'variables';
+
+body {
+    background-color: #fff;
+}
+
+///////////////////////// START HEADER //////////////////////
+
+.header-netflix {
+    background-color: #141414;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 45px;
+}
+
+.logo-netflix {
+    height: 32px;
+    width: 110px;
+    margin-left: 15px;
+    margin-top: 1px;
+}
+
+.logo-user {
+    height: 34px;
+    width: 34px;
+    object-fit: cover;
+    outline: none;
+}
+
+.logo-user:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+#dropdownMenuButton {
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.right-header {
+    margin-right: 10px;
+}
+
+.dropdown-menu {
+    background-color: #141414;
+    width: 156px;
+    top: 18px !important;
+    padding: 0;
+    transform: translate3d(-75px, 34px, 0px) !important;
+}
+
+.dropup-arrow {
+    border: 10px solid transparent;
+    border-bottom-color: #e5e5e5;
+    height: 0;
+    left: 50%;
+    top: -23px;
+    position: absolute;
+    width: 0;
+}
+
+.dropdown-arrow {
+    border: 5px solid transparent;
+    border-top-color: #e5e5e5;
+    height: 0;
+    left: 100%;
+    top: 50%;
+    margin-left: 10px;
+    position: absolute;
+    width: 0;
+}
+
+.dropdown-item {
+    text-decoration: none;
+    font-size: 12px;
+    padding: 9px 10px;
+    color: #e5e5e5 !important;
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+    color: #b3b3b3 !important;
+}
+.form-signout {
+    border-top: 1px solid hsla(0, 0%, 100%, 0.25);
+    margin-bottom: 8px;
+    padding-top: 7px;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-out {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-out:focus {
+    outline: none !important;
+    border: none !important;
+}
+.sign-out:hover span {
+    color: #b3b3b3;
+}
+
+///////////////////////// END HEADER //////////////////////
+///////////////////////// START FOOTER //////////////////////
+
+.site-footer {
+    margin-top: 80px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.content-footer {
+    padding: 30px 0;
+}
+
+.footer-item,
+h6 {
+    color: #737373;
+}
+
+.footer-item {
+    font-size: 13px;
+}
+
+.footer-item:hover {
+    color: #737373;
+}
+
+.content-footer .row {
+    margin-bottom: 16px;
+}
+
+///////////////////////// END FOOTER //////////////////////
+///////////////////////// START YOUR ACCOUNT //////////////////////
+.avatar-account {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin-bottom: 20px;
+    border-radius: 50% !important;
+    object-fit: cover;
+}
+
+.border-detail {
+    border-top: 1px solid #999;
+    padding-top: 20px;
+}
+.row {
+    margin: 0;
+}
+
+.details-info {
+    text-align: right;
+    color: #0073e6;
+}
+
+h5 {
+    color: #737373;
+    font-size: 18px;
+}
+
+///////////////////////// END YOUR ACCOUNT //////////////////////
+///////////////////////// START REGISTER ACCOUNT //////////////////////
+
+///////////////////////// END REGISTER ACCOUNT //////////////////////
+
+///////////////////////// ERROR ///////////////////
+.error {
+    color: red;
+}
