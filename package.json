@@ -1,7 +1,7 @@
 {
     "name": "nodejs",
     "version": "1.0.0",
-    "description": "Nodejs express project by cuncnthichngu",
+    "description": "Nodejs express project by cuncunthichngu",
     "main": "index.js",
     "engines": {
         "node": "14.x"
@@ -37,11 +37,13 @@
         "express": "^4.18.2",
         "express-handlebars": "^7.0.7",
         "jsonwebtoken": "^9.0.0",
+        "mongodb": "^5.4.0",
         "mongoose": "^7.1.0",
         "mongoose-slug-updater": "^3.3.0",
         "path": "^0.12.7"
     },
     "devDependencies": {
+        "@types/cookie-parser": "^1.4.3",
         "morgan": "^1.10.0",
         "nodemon": "^2.0.22",
         "sass": "^1.62.1"
