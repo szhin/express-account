@@ -1,0 +1,123 @@
+<div class='mt-5'>
+    <h1>Please enter your information below!</h1>
+    <form
+        method='POST'
+        action='create'
+        class='needs-validation mt-4'
+        enctype='multipart/form-data'
+    >
+        <div class='form-row'>
+            <div class='col-md-6 mb-3'>
+                <label for='firstName'>First name</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    id='firstName'
+                    name='firstName'
+                    required
+                />
+            </div>
+            <div class='col-md-6 mb-3'>
+                <label for='lastName'>Last name</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    id='lastName'
+                    name='lastName'
+                    required
+                />
+            </div>
+        </div>
+        <div class='form-row'>
+            <div class='col-md-6 mb-3'>
+                <label for='username'>Username
+                    <span class='error'>{{error}}</span></label>
+                <input
+                    type='text'
+                    class='form-control'
+                    id='username'
+                    name='username'
+                    required
+                />
+            </div>
+            <div class='col-md-6 mb-3'>
+                <label for='password'>Password</label>
+                <input
+                    type='password'
+                    class='form-control'
+                    id='password'
+                    name='password'
+                    required
+                />
+            </div>
+        </div>
+        <div class='form-row'>
+            <div class='col-md-6 mb-3'>
+                <label for='repeatPassword'>Repeat password
+                    <span class='error'>{{errorPassword}}</span></label>
+                <input
+                    type='password'
+                    name='repeatPassword'
+                    id='repeatPassword'
+                    class='form-control'
+                    required
+                />
+            </div>
+        </div>
+        <div class='form-row'>
+            <div class='col-md-6 mb-3'>
+                <label for='email'>Email<span
+                        class='error'
+                    >{{error}}</span></label>
+                <input
+                    type='email'
+                    class='form-control'
+                    id='email'
+                    name='email'
+                    required
+                />
+            </div>
+        </div>
+        <div class='form-row'>
+            <div class='col-md-6 mb-3'>
+                <label for='image'>Set avatar</label>
+                <input type='file' name='image' id='image' required />
+            </div>
+        </div>
+        <div class='form-row'>
+            <div class='col-md-6 mb-3'>
+                <label for='phone'>Phone number</label>
+                <input
+                    type='phone'
+                    class='form-control'
+                    id='phone'
+                    name='phone'
+                    required
+                />
+            </div>
+        </div>
+        <div class='form-row'>
+            <div class='col-md-6 mb-3'>
+                <label for='country'>Country</label>
+                <input
+                    type='text'
+                    class='form-control'
+                    id='country'
+                    name='country'
+                    required
+                />
+            </div>
+        </div>
+
+        <div class='mb-3'>
+            Already have an account?
+            <a href='/YourAccount/login'>Sign in</a>
+        </div>
+
+        <button class='btn btn-primary' type='submit'>Register</button>
+    </form>
+</div>
+
+<script>
+
+</script>

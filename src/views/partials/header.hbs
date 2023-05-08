@@ -1,0 +1,57 @@
+<header class='header-netflix'>
+    <div class='inner'>
+        <div class='left-header'>
+            {{! <a href='http://localhost:3000/'> }}
+            <a href='https://shin-frontend.vercel.app/'>
+                <img
+                    class='logo-netflix'
+                    src='/images/logo-shin.png'
+                    alt='Logo netflix'
+                />
+            </a>
+        </div>
+        <div class='right-header'>
+            <div class='dropdown'>
+                <button
+                    {{! class='btn btn-secondary dropdown-toggle' }}
+                    type='button'
+                    id='dropdownMenuButton'
+                    data-toggle='dropdown'
+                    aria-haspopup='true'
+                    aria-expanded='false'
+                >
+                    <div>
+                        {{#if account.image}}
+                            <img
+                                class='logo-user'
+                                src='https://shin-backend.onrender.com/{{account.image}}'
+                                {{!-- src='http://localhost:3001/{{account.image}}' --}}
+                            />
+                        {{else}}
+                            <img
+                                class='logo-user'
+                                src='/images/user-default-img.png'
+                            />
+                        {{/if}}
+                        <div class='dropdown-arrow'></div>
+                    </div>
+                </button>
+                <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                    <div class='dropup-arrow'></div>
+                    <a class='dropdown-item' href='#'>Manage Profiles</a>
+                    <a class='dropdown-item' href='#'>Transfer Profiles</a>
+                    <a
+                        class='dropdown-item'
+                        href='https://shin-backend.onrender.com/YourAccount'
+                    >Account</a>
+                    <a class='dropdown-item' href='#'>Help Center</a>
+                    <form method='POST' action='logout' class='form-signout'>
+                        <button type='submit' class='sign-out'>
+                            <span>Sign out of Netflix</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
