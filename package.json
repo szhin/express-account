@@ -1,0 +1,39 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Nodejs express project by cuncnthichngu",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szhin/express-account.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "movies",
+    "mongodb",
+    "backend",
+    "authentication"
+  ],
+  "author": "cunconthichngu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/szhin/express-account/issues"
+  },
+  "homepage": "https://github.com/szhin/express-account#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "http": "^0.0.1-security",
+    "mongoose": "^7.1.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22"
+  }
+}
