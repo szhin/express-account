@@ -2,9 +2,9 @@
 
 ## Table of Contents
 
-- [React](#frontend---react)
-- [Nodejs express](#backend---nodejs---express)
-- [MongoDB database](#mongodb---database)
+-   [React](#frontend---react)
+-   [Nodejs express](#backend---nodejs---express)
+-   [MongoDB database](#mongodb---database)
 
 ## Backend - Nodejs - Express
 
@@ -24,15 +24,15 @@ $ npm install express
 In file index.js
 
 ```node
-const express = require("express");
+const express = require('express');
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get('/', (req, res) => {
+    res.send('Hello World!');
 });
 
 app.listen(3000, () => {
-  console.log("Server listening on port 3000");
+    console.log('Server listening on port 3000');
 });
 ```
 
