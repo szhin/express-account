@@ -150,6 +150,7 @@ class UserController {
             })
             .catch(next);
     }
+    
     info(req, res, next) {
         if (req.session.user) {
             // Lấy thông tin từ session
