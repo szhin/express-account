@@ -107,6 +107,7 @@ class UserController {
                         req.session.user = {
                             userId: user._id,
                             userEmail: user.email,
+                            userImage: user.image,
                             token,
                         };
                         return res.redirect('/YourAccount');
@@ -148,6 +149,22 @@ class UserController {
                 });
             })
             .catch(next);
+    }
+    info(req, res, next) {
+        if (req.session.user) {
+            // Lấy thông tin từ session
+            const user = req.session.user;
+
+            // Trả về JSON chứa thông tin
+            return res.status(200).json({
+                user,
+            });
+        } else {
+            // Người dùng chưa đăng nhập, trả về lỗi hoặc thông báo không đủ quyền truy cập
+            return res.status(401).json({
+                message: 'Bạn cần đăng nhập để truy cập thông tin',
+            });
+        }
     }
     // [POST] /YourAccount/logout
     // Process logout account

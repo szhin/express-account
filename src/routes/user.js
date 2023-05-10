@@ -35,6 +35,7 @@ router.post('/register', upload.single('image'), userController.register);
 router.get('/renderLogin', userController.renderLogin);
 router.post('/login', userController.login);
 router.post('/logout', userController.logout);
+router.get('/info', userController.info);
 router.get('/auth-endpoint', auth, userController.authEndpoint);
 router.get('/yourAccount', userController.yourAccount);
 router.get('/free-endpoint', userController.freeEndpoint);
