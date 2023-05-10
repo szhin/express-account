@@ -21,10 +21,11 @@ const upload = multer({ storage: storage });
 
 router.use(
     session({
-        secret: 'YOUR-SECRET-KEY',
+        secret: process.env.REACT_APP_SECRET,
         resave: false,
         saveUninitialized: true,
-        cookie: { secure: false },
+        store: new MongoStore({ url: REACT_APP_DATABASE }),
+        cookie: { secure: true }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );
 

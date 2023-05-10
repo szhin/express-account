@@ -23,6 +23,16 @@ const corsOptions = {
     origin: 'https://szhin.vercel.app',
     credentials: true,
 };
+
+app.use(
+    session({
+        secret: process.env.REACT_APP_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        store: new MongoStore({ url: REACT_APP_DATABASE }),
+        cookie: { secure: true }, // Đặt thành true nếu triển khai trên môi trường HTTPS
+    }),
+);
 app.use(cors(corsOptions));
 // app.use(cors());
 app.use(morgan('combined'));
