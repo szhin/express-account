@@ -1,14 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 const auth = require('../auth/auth');
 const userController = require('../app/controllers/UserController');
 
 const session = require('express-session');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo');
 
 const multer = require('multer');
 const path = require('path');
+dotenv.config();
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'src/public/uploads');
@@ -24,7 +29,9 @@ router.use(
         secret: process.env.REACT_APP_SECRET,
         resave: false,
         saveUninitialized: true,
-        store: new MongoStore({ url: REACT_APP_DATABASE }),
+        store: MongoStore.create({
+            mongoUrl: process.env.REACT_APP_DATABASE,
+        }),
         cookie: { secure: true }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );

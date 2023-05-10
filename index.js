@@ -2,7 +2,9 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const session = require('express-session');
 const http = require('http');
+const MongoStore = require('connect-mongo');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -23,17 +25,19 @@ const corsOptions = {
     origin: 'https://szhin.vercel.app',
     credentials: true,
 };
+app.use(cors(corsOptions));
 
 app.use(
     session({
         secret: process.env.REACT_APP_SECRET,
         resave: false,
         saveUninitialized: true,
-        store: new MongoStore({ url: REACT_APP_DATABASE }),
+        store: MongoStore.create({
+            mongoUrl: process.env.REACT_APP_DATABASE,
+        }),
         cookie: { secure: true }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );
-app.use(cors(corsOptions));
 // app.use(cors());
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'src/public')));
