@@ -34,7 +34,7 @@ app.use(
         store: MongoStore.create({
             mongoUrl: process.env.REACT_APP_DATABASE,
         }),
-        cookie: { secure: true }, // Đặt thành true nếu triển khai trên môi trường HTTPS
+        cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );
 // app.use(cors());
