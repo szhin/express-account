@@ -10,14 +10,11 @@ const dotenv = require('dotenv');
 const { engine } = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const axios = require('axios');
 
 dotenv.config();
 
 const db = require('./src/config/db');
 const route = require('./src/routes');
-const auth = require('./src/auth/auth');
-const User = require('./src/app/models/User');
 
 const app = express();
 
@@ -27,8 +24,8 @@ const server = http.createServer(app);
 app.use(cors());
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'src/public')));
-// app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.json());
+// app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 

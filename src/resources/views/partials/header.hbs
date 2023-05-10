@@ -21,11 +21,7 @@
                 >
                     <div>
                         {{#if user.image}}
-                            <img
-                                class='logo-user'
-                                src='https://szhinbe.vercel.app/{{user.image}}'
-                                {{!-- src='http://localhost:8080/{{user.image}}' --}}
-                            />
+                            <img class='logo-user' src='{{user.image}}' />
                         {{else}}
                             <img
                                 class='logo-user'
