@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { mongooseToObject } = require('../../util/mongoose');
+dotenv.config();
 
 class UserController {
     // [POST] register endpoint
@@ -101,7 +103,7 @@ class UserController {
                                 userId: user._id,
                                 userEmail: user.email,
                             },
-                            'RANDOM-TOKEN',
+                            process.env.REACT_APP_SECRET,
                             { expiresIn: '24h' },
                         );
                         req.session.user = {
@@ -150,7 +152,7 @@ class UserController {
             })
             .catch(next);
     }
-    
+
     info(req, res, next) {
         if (req.session.user) {
             // Lấy thông tin từ session
