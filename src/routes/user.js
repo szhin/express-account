@@ -26,7 +26,7 @@ const upload = multer({ storage: storage });
 
 router.use(
     session({
-        secret: process.env.REACT_APP_SECRET,
+        secret: process.env.REACT_APP_SERCRET,
         resave: false,
         saveUninitialized: true,
         store: MongoStore.create({

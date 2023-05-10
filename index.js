@@ -26,10 +26,9 @@ const corsOptions = {
     credentials: true,
 };
 app.use(cors(corsOptions));
-
 app.use(
     session({
-        secret: process.env.REACT_APP_SECRET,
+        secret: process.env.REACT_APP_SERCRET,
         resave: false,
         saveUninitialized: true,
         store: MongoStore.create({
