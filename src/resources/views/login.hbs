@@ -1,15 +1,15 @@
 <div class="mt-5">
     <h1 class="">Enter your login information below!</h2>
-    <form method='POST' action="authen" class='needs-validation mt-4' novalidate>
+    <form method='POST' action="login" class='needs-validation mt-4' novalidate>
         
         <div class='form-row'>
             <div class='col-md-6 mb-3'>
-                <label for='username'>Username<span class="error">{{errorUsername}}</span></label>
+                <label for='email'>Email<span class="error">{{errorEmail}}</span></label>
                 <input
-                    type='text'
+                    type='email'
                     class='form-control'
-                    id='username'
-                    name="username"
+                    id='email'
+                    name="email"
                 />
             </div>
         </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
             If you do not already have an account! 
-            <a href="/YourAccount/register">Register</a>
+            <a href="/renderRegister">Register</a>
         </div>
 
         <button class='btn btn-primary' type='submit'>Login</button>

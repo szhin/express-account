@@ -10,6 +10,7 @@ const dotenv = require('dotenv');
 const { engine } = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const axios = require('axios');
 
 dotenv.config();
 
@@ -23,12 +24,10 @@ const app = express();
 const port = process.env.REACT_APP_PORT || 8080;
 const server = http.createServer(app);
 
-// app.use(express.static(path.join(__dirname, 'src/public')));
-
 app.use(cors());
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'src/public')));
-app.use(express.json());
+// app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -48,6 +47,9 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+
+db.connect();
 // Curb Cores Error by adding a header here
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -62,10 +64,16 @@ app.use((req, res, next) => {
     next();
 });
 
+
+
 route(app);
 
-// db.connect();
-
+// home page
+app.get('/data', (req, res) => {
+    // const { data } = axios.post('http://localhost:8080/login');
+    // console.log(data);
+    res.send('Hello World!');
+});
 // // register endpoint
 // app.post('/register', (req, res) => {
 //     // hash the password
@@ -111,57 +119,57 @@ route(app);
 
 // // login endpoint
 // app.post('/login', (req, res) => {
-//     // check if email exists
-//     User.findOne({ email: req.body.email })
+// // check if email exists
+// User.findOne({ email: req.body.email })
 
-//         // if email exists
-//         .then((user) => {
-//             // compare the password entered and the hashed password found
-//             bcrypt
-//                 .compare(req.body.password, user.password)
+//     // if email exists
+//     .then((user) => {
+//         // compare the password entered and the hashed password found
+//         bcrypt
+//             .compare(req.body.password, user.password)
 
-//                 // if the passwords match
-//                 .then((passwordCheck) => {
-//                     // check if password matches
-//                     if (!passwordCheck) {
-//                         return res.status(400).send({
-//                             message: 'Passwords does not match',
-//                             error,
-//                         });
-//                     }
-
-//                     //   create JWT token
-//                     const token = jwt.sign(
-//                         {
-//                             userId: user._id,
-//                             userEmail: user.email,
-//                         },
-//                         'RANDOM-TOKEN',
-//                         { expiresIn: '24h' },
-//                     );
-
-//                     //   return success res
-//                     res.status(200).send({
-//                         message: 'Login Successful',
-//                         email: user.email,
-//                         token,
-//                     });
-//                 })
-//                 // catch error if password does not match
-//                 .catch((error) => {
-//                     res.status(400).send({
+//             // if the passwords match
+//             .then((passwordCheck) => {
+//                 // check if password matches
+//                 if (!passwordCheck) {
+//                     return res.status(400).send({
 //                         message: 'Passwords does not match',
 //                         error,
 //                     });
+//                 }
+
+//                 //   create JWT token
+//                 const token = jwt.sign(
+//                     {
+//                         userId: user._id,
+//                         userEmail: user.email,
+//                     },
+//                     'RANDOM-TOKEN',
+//                     { expiresIn: '24h' },
+//                 );
+
+//                 //   return success res
+//                 res.status(200).send({
+//                     message: 'Login Successful',
+//                     email: user.email,
+//                     token,
 //                 });
-//         })
-//         // catch error if email does not exist
-//         .catch((e) => {
-//             res.status(404).send({
-//                 message: 'Email not found',
-//                 e,
+//             })
+//             // catch error if password does not match
+//             .catch((error) => {
+//                 res.status(400).send({
+//                     message: 'Passwords does not match',
+//                     error,
+//                 });
 //             });
+//     })
+//     // catch error if email does not exist
+//     .catch((e) => {
+//         res.status(404).send({
+//             message: 'Email not found',
+//             e,
 //         });
+//     });
 // });
 
 // // free endpoint
@@ -179,19 +187,19 @@ route(app);
 //     res.send('Hello World!');
 // });
 
-// app.listen(port, () => {
-//     console.log(`Server is listening on http://localhost:${port}`);
-// });
+app.listen(port, () => {
+    console.log(`Server is listening on http://localhost:${port}`);
+});
 
-mongoose
-    .connect(process.env.REACT_APP_DATABASE)
-    .then(() => {
-        console.log('Mongodb connected');
-        server.listen(port, () => {
-            console.log(`Server is listening on port ${port}`);
-        });
-    })
-    .catch((err) => {
-        console.log({ err });
-        process.exit(1);
-    });
+// mongoose
+//     .connect(process.env.REACT_APP_DATABASE)
+//     .then(() => {
+//         console.log('Mongodb connected');
+//         server.listen(port, () => {
+//             console.log(`Server is listening on port ${port}`);
+//         });
+//     })
+//     .catch((err) => {
+//         console.log({ err });
+//         process.exit(1);
+//     });

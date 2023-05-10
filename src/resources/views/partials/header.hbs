@@ -1,8 +1,7 @@
 <header class='header-netflix'>
     <div class='inner'>
         <div class='left-header'>
-            {{! <a href='http://localhost:3000/'> }}
-            <a href='https://shin-frontend.vercel.app/'>
+            <a href='https://szhin.vercel.app'>
                 <img
                     class='logo-netflix'
                     src='/images/logo-shin.png'
@@ -21,11 +20,11 @@
                     aria-expanded='false'
                 >
                     <div>
-                        {{#if account.image}}
+                        {{#if user.image}}
                             <img
                                 class='logo-user'
-                                src='https://shin-backend.onrender.com/{{account.image}}'
-                                {{!-- src='http://localhost:3001/{{account.image}}' --}}
+                                src='https://szhinbe.vercel.app/{{user.image}}'
+                                {{!-- src='http://localhost:8080/{{user.image}}' --}}
                             />
                         {{else}}
                             <img
@@ -42,7 +41,7 @@
                     <a class='dropdown-item' href='#'>Transfer Profiles</a>
                     <a
                         class='dropdown-item'
-                        href='https://shin-backend.onrender.com/YourAccount'
+                        href='https://szhinbe.vercel.app/YourAccount'
                     >Account</a>
                     <a class='dropdown-item' href='#'>Help Center</a>
                     <form method='POST' action='logout' class='form-signout'>
