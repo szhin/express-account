@@ -72,7 +72,7 @@ app.use((req, res, next) => {
 });
 route(app);
 
-app.listen(process.env.REACT_APP_WEB_URL, () => {
+app.listen(port, () => {
     console.log(`Server is listening on http://localhost:${port}`);
 });
 
