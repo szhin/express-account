@@ -6,6 +6,13 @@ const { mongooseToObject } = require('../../util/mongoose');
 dotenv.config();
 
 class UserController {
+    // [GET] render page register user
+    renderRegister(req, res, next) {
+        const error = req.flash('error');
+        const errorPassword = req.flash('errorPassword');
+        // Create variables for register.hbs
+        res.render('register', { error, errorPassword });
+    }
     // [POST] register endpoint
     register(req, res, next) {
         const { password, repeatPassword, email, username } = req.body;
@@ -180,13 +187,7 @@ class UserController {
         // res.send('Hello World!');
         res.render('home');
     }
-    // [GET] render page register user
-    renderRegister(req, res, next) {
-        const error = req.flash('error');
-        const errorPassword = req.flash('errorPassword');
-        // Create variables for register.hbs
-        res.render('register', { error, errorPassword });
-    }
+
     // [GET] render page login user
     renderLogin(req, res, next) {
         const errorPassword = req.flash('errorPassword');
