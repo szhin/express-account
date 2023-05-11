@@ -9,7 +9,6 @@ class UserController {
     // [POST] register endpoint
     register(req, res, next) {
         const { password, repeatPassword, email, username } = req.body;
-        console.log(password);
         if (password !== repeatPassword) {
             req.flash('errorPassword', ' - repeat password is incorrect');
             return res.redirect('/renderRegister');

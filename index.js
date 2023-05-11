@@ -26,17 +26,17 @@ const corsOptions = {
     credentials: true,
 };
 app.use(cors(corsOptions));
-app.use(
-    session({
-        secret: process.env.REACT_APP_SECRET,
-        resave: false,
-        saveUninitialized: true,
-        store: MongoStore.create({
-            mongoUrl: process.env.REACT_APP_DATABASE,
-        }),
-        cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
-    }),
-);
+// app.use(
+//     session({
+//         secret: process.env.REACT_APP_SECRET,
+//         resave: false,
+//         saveUninitialized: true,
+//         store: MongoStore.create({
+//             mongoUrl: process.env.REACT_APP_DATABASE,
+//         }),
+//         cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
+//     }),
+// );
 // app.use(cors());
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'src/public')));

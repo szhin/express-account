@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = (req, res, next) => {
     try {
@@ -6,7 +8,7 @@ module.exports = (req, res, next) => {
         console.log(req.headers.authorization);
         const token = req.headers.authorization.split(' ')[1];
         //check if the token matches the supposed origin
-        const decodedToken = jwt.verify(token, 'RANDOM-TOKEN');
+        const decodedToken = jwt.verify(token, process.env.REACT_APP_SECRET);
 
         // retrieve the user details of the logged in user
         const user = decodedToken;
