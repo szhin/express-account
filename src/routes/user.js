@@ -28,12 +28,12 @@ router.use(
     session({
         // secret: process.env.REACT_APP_SECRET,
         secret: "TOKEN SECRET SZHIN KEY",
-        resave: false,
+        resave: true,
         saveUninitialized: true,
-        store: MongoStore.create({
-            mongoUrl: process.env.REACT_APP_DATABASE,
-        }),
-        cookie: { secure: true }, // Đặt thành true nếu triển khai trên môi trường HTTPS
+        // store: MongoStore.create({
+        //     mongoUrl: process.env.REACT_APP_DATABASE,
+        // }),
+        cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );
 
