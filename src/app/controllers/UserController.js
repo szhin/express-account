@@ -26,55 +26,55 @@ class UserController {
             '/' +
             splitPathImage[splitPathImage.length - 1];
 
-        // User.count({
-        //     $or: [{ email }, { username }],
-        // })
-        //     .then((count) => {
-        // if (count > 0) {
-        //     // Variable error = - User.... in register.hbs
-        //     req.flash('error', ' - Username or email already in use');
-        //     return res.redirect('/renderRegister');
-        // }
-        bcrypt
-            .hash(req.body.password, 10)
-            .then((hashedPassword) => {
-                // create a new user instance and collect the data
-                const user = new User({
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    email: req.body.email,
-                    phone: req.body.phone,
-                    country: req.body.country,
-                    username: req.body.username,
-                    image: pathAvatar,
-                    password: hashedPassword,
-                });
-                // save the new user
-                user.save()
-                    // return success if the new user is added to the database successfully
-                    .then(() => res.redirect('/renderLogin'))
-                    .catch(next);
-                // res.status(201).send({
-                //     message: 'User Created Successfully',
-                //     result,
-                // });
+        User.count({
+            $or: [{ email }, { username }],
+        })
+            .then((count) => {
+                if (count > 0) {
+                    // Variable error = - User.... in register.hbs
+                    req.flash('error', ' - Username or email already in use');
+                    return res.redirect('/renderRegister');
+                }
+                bcrypt
+                    .hash(req.body.password, 10)
+                    .then((hashedPassword) => {
+                        // create a new user instance and collect the data
+                        const user = new User({
+                            firstName: req.body.firstName,
+                            lastName: req.body.lastName,
+                            email: req.body.email,
+                            phone: req.body.phone,
+                            country: req.body.country,
+                            username: req.body.username,
+                            image: pathAvatar,
+                            password: hashedPassword,
+                        });
+                        // save the new user
+                        user.save()
+                            // return success if the new user is added to the database successfully
+                            .then(() => res.redirect('/renderLogin'))
+                            .catch(next);
+                        // res.status(201).send({
+                        //     message: 'User Created Successfully',
+                        //     result,
+                        // });
 
-                // catch error if the new user wasn't added successfully to the database
+                        // catch error if the new user wasn't added successfully to the database
+                    })
+                    // catch error if the password hash isn't successful
+                    .catch((err) => {
+                        res.status(500).send({
+                            message: 'Password was not hashed successfully',
+                            err,
+                        });
+                    });
             })
-            // catch error if the password hash isn't successful
             .catch((err) => {
                 res.status(500).send({
-                    message: 'Password was not hashed successfully',
+                    message: 'Something went wrong',
                     err,
                 });
             });
-        // })
-        // .catch((err) => {
-        //     res.status(500).send({
-        //         message: 'Something went wrong',
-        //         err,
-        //     });
-        // });
         // hash the password
     }
     // [POST] login endpoint

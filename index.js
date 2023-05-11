@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
 const http = require('http');
+const https = require('https');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const cors = require('cors');
@@ -15,12 +16,19 @@ const cookieParser = require('cookie-parser');
 
 dotenv.config();
 
+
+
 const db = require('./src/config/db');
 const route = require('./src/routes');
 
 const app = express();
 
+
 const port = process.env.REACT_APP_PORT || 8080;
+
+
+// http.createServer(app).listen(port);
+// https.createServer(options, app).listen(443);
 
 app.use(cookieParser());
 

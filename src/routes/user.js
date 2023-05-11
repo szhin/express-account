@@ -27,7 +27,7 @@ const upload = multer({ storage: storage });
 router.use(
     session({
         // secret: process.env.REACT_APP_SECRET,
-        secret: "TOKEN SECRET SZHIN KEY",
+        secret: 'TOKEN SECRET SZHIN KEY',
         resave: true,
         saveUninitialized: true,
         // store: MongoStore.create({
@@ -39,10 +39,10 @@ router.use(
 
 router.use(flash());
 
-router.get('/renderRegister', userController.renderRegister);
-router.post('/register', upload.single('image'), userController.register);
-router.get('/renderLogin', userController.renderLogin);
-router.post('/login', userController.login);
+router.get('/renderRegister/', userController.renderRegister);
+router.post('/register/', upload.single('image'), userController.register);
+router.get('/renderLogin/', userController.renderLogin);
+router.post('/login/', userController.login);
 router.post('/logout', userController.logout);
 router.get('/info', userController.info);
 router.get('/auth-endpoint', auth, userController.authEndpoint);
