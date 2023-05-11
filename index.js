@@ -21,20 +21,20 @@ const route = require('./src/routes');
 const app = express();
 
 const port = process.env.REACT_APP_PORT || 8080;
+
+app.use(cookieParser());
+
+app.use(morgan('combined'));
+app.use(express.static(path.join(__dirname, 'src/public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// app.use(bodyParser.json());
 const corsOptions = {
     origin: 'https://szhin.vercel.app',
     allowedHeaders: ['Content-Type'],
     credentials: true,
 };
 app.use(cors(corsOptions));
-app.use(cookieParser());
-
-app.use(morgan('combined'));
-app.use(express.static(path.join(__dirname, 'src/public')));
-app.use(express.json());
-// app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true }));
-
 // Template engine
 app.engine(
     'hbs',
