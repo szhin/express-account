@@ -4,7 +4,7 @@ const path = require('path');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { mongooseToObject } = require('../../util/mongoose');
-const file = require('file')
+const file = require('file');
 dotenv.config();
 
 class UserController {
@@ -16,7 +16,7 @@ class UserController {
         res.render('register', { error, errorPassword });
     }
     // [POST] register endpoint
-    register(req, res, next) {
+    async register(req, res, next) {
         const { password, repeatPassword, email, username } = req.body;
         console.log(password);
         if (password !== repeatPassword) {
@@ -39,10 +39,26 @@ class UserController {
                 }
                 bcrypt
                     .hash(req.body.password, 10)
-                    .then((hashedPassword) => {
+                    .then(async (hashedPassword) => {
                         console.log(hashedPassword);
                         // create a new user instance and collect the data
-                        const user = new User({
+                        // const user = new User({
+                        //     firstName: req.body.firstName,
+                        //     lastName: req.body.lastName,
+                        //     email: req.body.email,
+                        //     phone: req.body.phone,
+                        //     country: req.body.country,
+                        //     username: req.body.username,
+                        //     image: pathAvatar,
+                        //     password: hashedPassword,
+                        // });
+                        // console.log(user);
+                        // // save the new user
+                        // user.save()
+                        //     // return success if the new user is added to the database successfully
+                        //     .then(() => res.redirect('/renderLogin'))
+                        //     .catch(next);
+                        const newUser = new User({
                             firstName: req.body.firstName,
                             lastName: req.body.lastName,
                             email: req.body.email,
@@ -52,13 +68,8 @@ class UserController {
                             image: pathAvatar,
                             password: hashedPassword,
                         });
-                        console.log(user);
-                        // save the new user
-                        user.save()
-                            // return success if the new user is added to the database successfully
-                            .then(() => res.redirect('/renderLogin'))
-                            .catch(next);
-                        console.log('wwtf');
+                        await User.create(newUser);
+                        res.redirect('/renderLogin');
                         // catch error if the new user wasn't added successfully to the database
                     })
                     // catch error if the password hash isn't successful

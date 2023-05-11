@@ -26,4 +26,4 @@ const User = new mongoose.Schema(
 );
 
 // Tự tạo collection cái chữ 'User' => users
-module.exports = mongoose.model.Users || mongoose.model('Users', User);
+module.exports = mongoose.model('Users', User);
