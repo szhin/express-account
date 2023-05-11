@@ -26,13 +26,14 @@ const upload = multer({ storage: storage });
 
 router.use(
     session({
-        secret: process.env.REACT_APP_SECRET,
+        // secret: process.env.REACT_APP_SECRET,
+        secret: "TOKEN SECRET SZHIN KEY",
         resave: false,
         saveUninitialized: true,
         store: MongoStore.create({
             mongoUrl: process.env.REACT_APP_DATABASE,
         }),
-        cookie: { secure: true }, // Đặt thành true nếu triển khai trên môi trường HTTPS
+        cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );
 

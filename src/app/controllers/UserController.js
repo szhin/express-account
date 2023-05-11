@@ -44,13 +44,12 @@ class UserController {
                         // save the new user
                         user.save()
                             // return success if the new user is added to the database successfully
-                            .then((result) => {
-                                // res.status(201).send({
-                                //     message: 'User Created Successfully',
-                                //     result,
-                                // });
-                                res.redirect('/renderLogin');
-                            })
+                            .then((result) => res.redirect('/renderLogin'))
+                            // res.status(201).send({
+                            //     message: 'User Created Successfully',
+                            //     result,
+                            // });
+
                             // catch error if the new user wasn't added successfully to the database
                             .catch((error) => {
                                 res.status(500).send({
@@ -102,7 +101,7 @@ class UserController {
                                 userId: user._id,
                                 userEmail: user.email,
                             },
-                            process.env.REACT_APP_SECRET,
+                            "TOKEN SECRET SZHIN KEY",
                             { expiresIn: '24h' },
                         );
                         req.session.user = {

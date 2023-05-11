@@ -27,13 +27,13 @@ const corsOptions = {
     credentials: true,
 };
 app.use(cors(corsOptions));
+app.use(cookieParser());
 
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'src/public')));
 app.use(express.json());
 // app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 // Template engine
 app.engine(
