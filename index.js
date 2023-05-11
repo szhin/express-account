@@ -23,21 +23,11 @@ const app = express();
 const port = process.env.REACT_APP_PORT || 8080;
 const corsOptions = {
     origin: 'https://szhin.vercel.app',
+    allowedHeaders: ['Content-Type'],
     credentials: true,
 };
 app.use(cors(corsOptions));
-// app.use(
-//     session({
-//         secret: process.env.REACT_APP_SECRET,
-//         resave: false,
-//         saveUninitialized: true,
-//         store: MongoStore.create({
-//             mongoUrl: process.env.REACT_APP_DATABASE,
-//         }),
-//         cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
-//     }),
-// );
-// app.use(cors());
+
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'src/public')));
 app.use(express.json());
@@ -62,18 +52,18 @@ app.use(function (req, res, next) {
 
 db.connect();
 // Curb Cores Error by adding a header here
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization',
-    );
-    res.setHeader(
-        'Access-Control-Allow-Methods',
-        'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-    );
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader(
+//         'Access-Control-Allow-Headers',
+//         'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization',
+//     );
+//     res.setHeader(
+//         'Access-Control-Allow-Methods',
+//         'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+//     );
+//     next();
+// });
 
 app.use((req, res, next) => {
     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
