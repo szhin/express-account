@@ -2,7 +2,7 @@
     <h1>Please enter your information below!</h1>
     <form
         method='POST'
-        action='register'
+        action='/register'
         class='needs-validation mt-4'
         enctype='multipart/form-data'
     >
@@ -31,7 +31,8 @@
         <div class='form-row'>
             <div class='col-md-6 mb-3'>
                 <label for='username'>Username
-                    <span class='error'>{{error}}</span></label>
+                    <span class='error'>{{error}}</span>
+                </label>
                 <input
                     type='text'
                     class='form-control'

@@ -39,8 +39,8 @@ router.use(
 
 router.use(flash());
 
-router.get('/renderRegister/', userController.renderRegister);
-router.post('/register/', upload.single('image'), userController.register);
+router.get('/renderRegister', userController.renderRegister);
+router.post('/register', upload.single('image'), userController.register);
 router.get('/renderLogin/', userController.renderLogin);
 router.post('/login/', userController.login);
 router.post('/logout', userController.logout);
