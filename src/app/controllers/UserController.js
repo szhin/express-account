@@ -45,11 +45,11 @@ class UserController {
                         user.save()
                             // return success if the new user is added to the database successfully
                             .then((result) => {
-                                // res.status(201).send({
-                                //     message: 'User Created Successfully',
-                                //     result,
-                                // });
-                                res.redirect('/renderLogin');
+                                res.status(201).send({
+                                    message: 'User Created Successfully',
+                                    result,
+                                });
+                                // res.redirect('/renderLogin');
                             })
                             // catch error if the new user wasn't added successfully to the database
                             .catch((error) => {
