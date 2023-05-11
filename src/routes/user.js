@@ -29,9 +29,9 @@ router.use(
         secret: process.env.REACT_APP_SECRET,
         resave: false,
         saveUninitialized: true,
-        store: MongoStore.create({
-            mongoUrl: process.env.REACT_APP_DATABASE,
-        }),
+        // store: MongoStore.create({
+        //     mongoUrl: process.env.REACT_APP_DATABASE,
+        // }),
         cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );
