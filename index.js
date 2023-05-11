@@ -1,10 +1,8 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
 const http = require('http');
-const https = require('https');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const cors = require('cors');
@@ -26,9 +24,6 @@ const app = express();
 
 const port = process.env.REACT_APP_PORT || 8080;
 
-
-// http.createServer(app).listen(port);
-// https.createServer(options, app).listen(443);
 
 app.use(cookieParser());
 
