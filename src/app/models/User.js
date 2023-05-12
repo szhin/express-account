@@ -19,6 +19,7 @@ const User = new mongoose.Schema(
             required: [true, 'Please provide a password!'],
             unique: false,
         },
+        gender: { type: String },
         // image: { type: String },
         slug: { type: String, slug: 'username', unique: true },
     },
