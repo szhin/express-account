@@ -1,10 +1,8 @@
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
-const path = require('path');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const { mongooseToObject } = require('../../util/mongoose');
-const file = require('file');
 dotenv.config();
 
 class UserController {
@@ -18,16 +16,15 @@ class UserController {
     // [POST] register endpoint
     async register(req, res, next) {
         const { password, repeatPassword, email, username } = req.body;
-        console.log(password);
         if (password !== repeatPassword) {
             req.flash('errorPassword', ' - repeat password is incorrect');
             return res.redirect('/renderRegister');
         }
-        const splitPathImage = req.file.path.split('/');
-        const pathAvatar =
-            splitPathImage[splitPathImage.length - 2] +
-            '/' +
-            splitPathImage[splitPathImage.length - 1];
+        // const splitPathImage = req.file.path.split('/');
+        // const pathAvatar =
+        //     splitPathImage[splitPathImage.length - 2] +
+        //     '/' +
+        //     splitPathImage[splitPathImage.length - 1];
         User.count({
             $or: [{ email }, { username }],
         })
@@ -40,7 +37,6 @@ class UserController {
                 bcrypt
                     .hash(req.body.password, 10)
                     .then(async (hashedPassword) => {
-                        console.log(hashedPassword);
                         // create a new user instance and collect the data
                         const user = new User({
                             firstName: req.body.firstName,
@@ -52,13 +48,12 @@ class UserController {
                             image: pathAvatar,
                             password: hashedPassword,
                         });
-                        console.log(user);
                         // save the new user
                         user.save()
                             // return success if the new user is added to the database successfully
                             .then(() => res.redirect('/renderLogin'))
                             .catch(next);
-                    
+
                         // catch error if the new user wasn't added successfully to the database
                     })
                     // catch error if the password hash isn't successful
