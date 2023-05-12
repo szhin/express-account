@@ -40,8 +40,8 @@
                                         <label class="form-label" for="email">Your email<span
                                                 class="error">{{error}}</span></label>
                                         <input type="email" id="email" name="email" class="form-control form-control-lg"
-                                            style="font-size: 16px; !important" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
-                                            required />
+                                            style="font-size: 16px; !important"
+                                            pattern="^[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.com$" required />
 
                                     </div>
                                     <div class="row">
@@ -73,7 +73,8 @@
                                                 <label class="form-label" for="phone">Phone number</label>
                                                 <input type="phone" id="phone" name="phone"
                                                     class="form-control form-control-lg"
-                                                    style="font-size: 16px; !important" required />
+                                                    style="font-size: 16px; !important" required
+                                                    oninput="removeSpaces(this)" />
 
                                             </div>
                                         </div>
@@ -150,3 +151,9 @@
         </div>
     </form>
 </div>
+
+<script>
+    function removeSpaces(input) {
+        input.value = input.value.replace(/\s/g, '');
+    }
+</script>
