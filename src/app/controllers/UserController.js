@@ -120,7 +120,7 @@ class UserController {
     async register(req, res, next) {
         const { password, repeatPassword, email, username } = req.body;
         if (password !== repeatPassword) {
-            req.flash('errorPassword', ' - repeat password is incorrect');
+            req.flash('errorPassword', ' - wrong');
             return res.redirect('/renderRegister');
         }
         // const splitPathImage = req.file.path.split('/');
