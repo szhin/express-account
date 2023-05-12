@@ -11,30 +11,24 @@ const MongoStore = require('connect-mongo');
 
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
 dotenv.config();
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'src/public/uploads');
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname));
-//     },
-// });
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const dir = 'src/public/uploads';
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+        cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    },
+});
 
-// // Serve static files from the 'src/public/uploads' directory
-// router.use(express.static(__dirname + '/src/public/uploads'));
-
-// // Allow access to the 'src/public/uploads' directory
-// router.use('/src/public/uploads', express.static('src/public/uploads'));
-
-// // Set the 'immutable' option to 'true' for the static middleware to allow write access
-// router.use(
-//     '/src/public/uploads',
-//     express.static('src/public/uploads', { immutable: true }),
-// );
-
-// const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 router.use(
     session({
@@ -51,8 +45,8 @@ router.use(
 router.use(flash());
 
 router.get('/renderRegister', userController.renderRegister);
-router.post('/register', userController.register);
-// router.post('/register', upload.single('image'), userController.register);
+// router.post('/register', userController.register);
+router.post('/register', upload.single('image'), userController.register);
 router.get('/renderLogin/', userController.renderLogin);
 router.post('/login/', userController.login);
 router.post('/logout', userController.logout);

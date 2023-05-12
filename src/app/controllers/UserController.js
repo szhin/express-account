@@ -23,11 +23,11 @@ class UserController {
             req.flash('errorPassword', ' - repeat password is incorrect');
             return res.redirect('/renderRegister');
         }
-        // const splitPathImage = req.file.path.split('/');
-        // const pathAvatar =
-        //     splitPathImage[splitPathImage.length - 2] +
-        //     '/' +
-        //     splitPathImage[splitPathImage.length - 1];
+        const splitPathImage = req.file.path.split('/');
+        const pathAvatar =
+            splitPathImage[splitPathImage.length - 2] +
+            '/' +
+            splitPathImage[splitPathImage.length - 1];
         User.count({
             $or: [{ email }, { username }],
         })
@@ -49,7 +49,7 @@ class UserController {
                             phone: req.body.phone,
                             country: req.body.country,
                             username: req.body.username,
-                            // image: pathAvatar,
+                            image: pathAvatar,
                             password: hashedPassword,
                         });
                         console.log(user);
