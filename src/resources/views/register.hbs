@@ -41,7 +41,8 @@
                                                 class="error">{{error}}</span></label>
                                         <input type="email" id="email" name="email" class="form-control form-control-lg"
                                             style="font-size: 16px; !important"
-                                            pattern="^[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.com$" required />
+                                            pattern="^[a-zA-Z0-9._%+-]+@(gmail|yahoo|hotmail)\.com$" required
+                                            oninput="removeSpaces(this)" />
 
                                     </div>
                                     <div class="row">
@@ -51,7 +52,8 @@
                                                 <label class="form-label" for="password">Password</label>
                                                 <input type="password" id="password" name="password"
                                                     class="form-control form-control-lg"
-                                                    style="font-size: 16px; !important" required />
+                                                    style="font-size: 16px; !important" required
+                                                    oninput="removeSpaces(this)" />
 
                                             </div>
                                         </div>
@@ -62,7 +64,8 @@
                                                     password<span class="error">{{errorPassword}}</span></label>
                                                 <input type="password" id="repeatPassword" name="repeatPassword"
                                                     class="form-control form-control-lg"
-                                                    style="font-size: 16px; !important" required />
+                                                    style="font-size: 16px; !important" required
+                                                    oninput="removeSpaces(this)" />
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +88,8 @@
                                                         class="error">{{error}}</span></label>
                                                 <input type="text" id="username" name="username"
                                                     class="form-control form-control-lg"
-                                                    style="font-size: 16px; !important" required />
+                                                    style="font-size: 16px; !important" required
+                                                    oninput="removeSpaces(this)" />
                                             </div>
                                         </div>
                                     </div>
