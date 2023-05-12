@@ -21,6 +21,19 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname));
     },
 });
+
+// Serve static files from the 'src/public/uploads' directory
+router.use(express.static(__dirname + '/src/public/uploads'));
+
+// Allow access to the 'src/public/uploads' directory
+router.use('/src/public/uploads', express.static('src/public/uploads'));
+
+// Set the 'immutable' option to 'true' for the static middleware to allow write access
+router.use(
+    '/src/public/uploads',
+    express.static('src/public/uploads', { immutable: true }),
+);
+
 const upload = multer({ storage: storage });
 
 router.use(
