@@ -116,8 +116,11 @@
                                             style="!important;padding-left: 10px !important;padding-right: 10px !important;">
 
                                             <select name="country" class="select"
-                                                style="height: 40px; padding-left:10px !important;">
+                                                style="height: 40px; padding-left:10px !important;" required>
+                                                <option value="" disabled selected>- Select country -</option>
                                                 {{#each countries}}
+                                                <option value="{{this.name}}">{{this.name}}</option>
+                                                {{/each}}{{#each countries}}
                                                 <option value="{{this.name}}">{{this.name}}</option>
                                                 {{/each}}
                                             </select>
