@@ -1,9 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const session = require('express-session');
-const http = require('http');
-const MongoStore = require('connect-mongo');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -68,26 +63,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.use((req, res, next) => {
-//     // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//     res.setHeader('Access-Control-Allow-Origin', 'https://szhin.vercel.app');
-//     next();
-// });
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://szhin.vercel.app');
+    next();
+});
 route(app);
 
 app.listen(port, () => {
     console.log(`Server is listening on http://localhost:${port}`);
 });
-
-// mongoose
-//     .connect(process.env.REACT_APP_DATABASE)
-//     .then(() => {
-//         console.log('Mongodb connected');
-//         server.listen(port, () => {
-//             console.log(`Server is listening on port ${port}`);
-//         });
-//     })
-//     .catch((err) => {
-//         console.log({ err });
-//         process.exit(1);
-//     });

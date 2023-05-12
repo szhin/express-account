@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 const auth = require('../auth/auth');
@@ -26,8 +25,7 @@ const upload = multer({ storage: storage });
 
 router.use(
     session({
-        // secret: process.env.REACT_APP_SECRET,
-        secret: 'TOKEN SECRET SZHIN KEY',
+        secret: process.env.REACT_APP_SECRET,
         resave: true,
         saveUninitialized: true,
         store: MongoStore.create({

@@ -42,23 +42,7 @@ class UserController {
                     .then(async (hashedPassword) => {
                         console.log(hashedPassword);
                         // create a new user instance and collect the data
-                        // const user = new User({
-                        //     firstName: req.body.firstName,
-                        //     lastName: req.body.lastName,
-                        //     email: req.body.email,
-                        //     phone: req.body.phone,
-                        //     country: req.body.country,
-                        //     username: req.body.username,
-                        //     image: pathAvatar,
-                        //     password: hashedPassword,
-                        // });
-                        // console.log(user);
-                        // // save the new user
-                        // user.save()
-                        //     // return success if the new user is added to the database successfully
-                        //     .then(() => res.redirect('/renderLogin'))
-                        //     .catch(next);
-                        const newUser = new User({
+                        const user = new User({
                             firstName: req.body.firstName,
                             lastName: req.body.lastName,
                             email: req.body.email,
@@ -68,8 +52,13 @@ class UserController {
                             image: pathAvatar,
                             password: hashedPassword,
                         });
-                        await User.create(newUser);
-                        res.redirect('/renderLogin');
+                        console.log(user);
+                        // save the new user
+                        user.save()
+                            // return success if the new user is added to the database successfully
+                            .then(() => res.redirect('/renderLogin'))
+                            .catch(next);
+                    
                         // catch error if the new user wasn't added successfully to the database
                     })
                     // catch error if the password hash isn't successful
@@ -115,7 +104,7 @@ class UserController {
                                 userId: user._id,
                                 userEmail: user.email,
                             },
-                            'TOKEN SECRET SZHIN KEY',
+                            process.env.REACT_APP_SECRET,
                             { expiresIn: '24h' },
                         );
                         req.session.user = {

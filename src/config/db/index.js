@@ -1,17 +1,16 @@
 // external imports
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 
 async function connect() {
     // use mongoose to connect this app to our database on mongoDB using the DB_URL (connection string)
     mongoose
-        .connect(
-            'mongodb+srv://uzumakinarutoshin:JgnvqEThYl0KoEmj@back-end-shin.nrh1hqy.mongodb.net/?retryWrites=true&w=majority',
-            {
-                //   these are options to ensure that the connection is done properly
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            },
-        )
+        .connect(process.env.REACT_APP_DATABASE, {
+            //   these are options to ensure that the connection is done properly
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
         .then(() => {
             console.log('Successfully connected to MongoDB Atlas!');
         })
