@@ -19,7 +19,7 @@ const User = new mongoose.Schema(
             required: [true, 'Please provide a password!'],
             unique: false,
         },
-        image: { type: String },
+        // image: { type: String },
         slug: { type: String, slug: 'username', unique: true },
     },
     { timestamps: true },
