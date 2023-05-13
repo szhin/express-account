@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 
 const auth = require('../auth/auth');
@@ -41,9 +42,15 @@ router.use(
         store: MongoStore.create({
             mongoUrl: process.env.REACT_APP_DATABASE,
         }),
-        cookie: { secure: false }, // Đặt thành true nếu triển khai trên môi trường HTTPS
+
+        cookie: {
+            maxAge: 60 * 10000,
+            secure: process.env.REACT_APP_NODE_ENV === 'production',
+        }, // Đặt thành true nếu triển khai trên môi trường HTTPS
     }),
 );
+
+router.use(cookieParser());
 
 router.use(flash());
 

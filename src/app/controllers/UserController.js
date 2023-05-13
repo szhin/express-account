@@ -8,9 +8,13 @@ dotenv.config();
 class UserController {
     // [GET] render page login user
     renderLogin(req, res, next) {
-        const errorPassword = req.flash('errorPassword');
-        const errorEmail = req.flash('errorEmail');
-        res.render('login', { errorPassword, errorEmail });
+        if (req.session.user) {
+            return res.redirect('/YourAccount');
+        } else {
+            const errorPassword = req.flash('errorPassword');
+            const errorEmail = req.flash('errorEmail');
+            res.render('login', { errorPassword, errorEmail });
+        }
     }
     // [GET] render page register user
     renderRegister(req, res, next) {
@@ -208,11 +212,10 @@ class UserController {
                         req.session.user = {
                             userId: user._id,
                             userEmail: user.email,
-                            userImage: user.image,
                             token,
                         };
+                        // res.setHeader('Authorization', 'Bearer', token);
                         return res.redirect('/YourAccount');
-                        res.setHeader('Authorization', 'Bearer', token);
                         res.status(200).send({
                             message: 'Login Successful',
                             email: user.email,
@@ -236,7 +239,7 @@ class UserController {
     yourAccount(req, res, next) {
         // Check status account is logged in
         if (!req.session.user) {
-            return res.redirect('renderLogin');
+            return res.redirect('/renderLogin');
         }
 
         // Find one account logged in to render your-account.hbs
